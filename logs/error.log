@@ -1,0 +1,2 @@
+2024-10-15 17:22:05,281 - ErrorHandler - ERROR - File Error during parsing the CSV file: [Errno 2] No such file or directory: '../tests/csv/testcsv.csv'
+2024-10-15 17:24:28,339 - ErrorHandler - ERROR - File Error during parsing the CSV file: [Errno 2] No such file or directory: '../tests/csv/testcsv.csv'

@@ -2,12 +2,14 @@ import requests
 import time
 from src.token_manager import TokenManager
 from src.file_manager import FileManager
+from src.error_handler import ErrorHandler, APIError
 
 class BackupManager:
     def __init__(self):
         self.api_base_url = "https://canvas.instructure.com/api/v1"
         self.token_manager = TokenManager()
         self.file_manager = FileManager()
+        self.error_handler = ErrorHandler()
         self.api_token = self.token_manager.get_token()
 
     def trigger_backup(self, course_id):
@@ -23,8 +25,8 @@ class BackupManager:
             print(f"Backup triggered for course {course_id}. Backup ID: {backup_id}")
             return backup_id
         except requests.exceptions.RequestException as e:
-            print(f"Error triggering backup for course {course_id}: {e}")
-            # Placeholder: Integrate with ErrorHandler to log and manage this error
+            self.error_handler.handle_api_error(e, f"triggering backup for course {course_id}", 
+                                                retry_callback=lambda: self.trigger_backup(course_id))
             return None
 
     def check_backup_status(self, course_id, backup_id):
@@ -40,8 +42,7 @@ class BackupManager:
             print(f"Backup status for course {course_id}: {backup_status}")
             return backup_status
         except requests.exceptions.RequestException as e:
-            print(f"Error checking backup status for course {course_id}: {e}")
-            # Placeholder: Integrate with ErrorHandler to log and manage this error
+            self.error_handler.handle_api_error(e, f"checking backup status for course {course_id}")
             return None
 
     def download_backup(self, course_id, backup_id):
