@@ -1,8 +1,9 @@
+import os
 import requests
 import time
 from src.token_manager import TokenManager
 from src.file_manager import FileManager
-from src.error_handler import ErrorHandler, APIError
+from src.error_handler import ErrorHandler, APIError, FileError
 from src.logger import Logger
 
 class BackupManager:
@@ -13,24 +14,37 @@ class BackupManager:
         self.error_handler = ErrorHandler()
         self.logger = Logger().get_logger()
         self.api_token = self.token_manager.get_token()
+        self.courses = []
 
-    def trigger_backup(self, course_id):
-        """Trigger a backup for a given course ID."""
-        self.logger.info(f"Triggering backup for course {course_id}")
-        endpoint = f"{self.api_base_url}/courses/{course_id}/backups"
-        headers = {
-            "Authorization": f"Bearer {self.api_token}"
-        }
+    def load_courses_from_csv(self, file_path):
+        """Load and validate courses from a CSV file."""
+        self.logger.info(f"Loading courses from CSV: {file_path}")
         try:
-            response = requests.post(endpoint, headers=headers)
-            response.raise_for_status()
-            backup_id = response.json().get("id")
-            print(f"Backup triggered for course {course_id}. Backup ID: {backup_id}")
-            return backup_id
-        except requests.exceptions.RequestException as e:
-            self.error_handler.handle_api_error(e, f"triggering backup for course {course_id}", 
-                                                retry_callback=lambda: self.trigger_backup(course_id))
-            return None
+            courses = self.file_manager.validate_and_parse_csv(file_path)
+            if not courses:
+                raise FileError("No valid courses found in the CSV.")
+            self.courses = courses
+            self.logger.info(f"Successfully loaded {len(courses)} courses from CSV.")
+        except Exception as e:
+            self.error_handler.handle_file_error(e, "loading courses from CSV")
+
+    def trigger_backup(self, course_name, course_id):
+        """Mock method to simulate triggering a backup for a course."""
+        self.logger.info(f"Triggering backup for course: {course_name} (ID: {course_id})")
+        try:
+            # Simulate an API call here (mocked for now)
+            response_success = self.mock_api_call(course_id)
+            if not response_success:
+                raise APIError(f"Failed to initiate backup for course: {course_name}")
+            self.logger.info(f"Backup successfully triggered for {course_name}")
+            return True
+        except APIError as e:
+            self.error_handler.handle_api_error(e, f"triggering backup for {course_name}")
+            return False
+        
+    def mock_api_call(self, course_id):
+        """Mock API method for triggering backup, returns False to simulate an error."""
+        return False
 
     def check_backup_status(self, course_id, backup_id):
         """Check the status of the backup for a given course ID."""
@@ -80,7 +94,11 @@ class BackupManager:
                     time.sleep(30)
 
 if __name__ == "__main__":
-    manager = BackupManager()
-    # Example courses list (course name, course ID)
-    courses = [("Test Course", "12345")]
-    manager.start_backup_process(courses)
+    backup_manager = BackupManager()
+    test_csv_path = os.path.join(os.path.dirname(__file__), "../tests/csv/testcsv.csv")
+    backup_manager.load_courses_from_csv(test_csv_path)
+
+    for course_name, course_id in backup_manager.courses:
+        success = backup_manager.trigger_backup(course_name, course_id)
+        if not success:
+            print(f"Error triggering backup for {course_name}.")

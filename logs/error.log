@@ -1,2 +1,62 @@
 2024-10-15 17:22:05,281 - ErrorHandler - ERROR - File Error during parsing the CSV file: [Errno 2] No such file or directory: '../tests/csv/testcsv.csv'
 2024-10-15 17:24:28,339 - ErrorHandler - ERROR - File Error during parsing the CSV file: [Errno 2] No such file or directory: '../tests/csv/testcsv.csv'
+2024-10-16 13:50:05,778 - ErrorHandler - ERROR - File Error during parsing the CSV file: [Errno 2] No such file or directory: 'tests/csv/test_courses.csv'
+2024-10-16 13:50:05,778 - ErrorHandler - ERROR - File Error during parsing the CSV file: [Errno 2] No such file or directory: 'tests/csv/test_courses.csv'
+2024-10-16 13:50:05,778 - ErrorHandler - ERROR - File Error during parsing the CSV file: [Errno 2] No such file or directory: 'tests/csv/test_courses.csv'
+2024-10-16 13:50:15,234 - ErrorHandler - ERROR - File Error during loading courses from CSV: No valid courses found in the CSV.
+2024-10-16 13:50:15,234 - ErrorHandler - ERROR - File Error during loading courses from CSV: No valid courses found in the CSV.
+2024-10-16 13:50:15,234 - ErrorHandler - ERROR - File Error during loading courses from CSV: No valid courses found in the CSV.
+2024-10-16 13:51:48,142 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 180 Online Master: Failed to initiate backup for course: ACCTG 180 Online Master
+2024-10-16 13:51:48,142 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 180 Online Master: Failed to initiate backup for course: ACCTG 180 Online Master
+2024-10-16 13:51:48,142 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 180 Online Master: Failed to initiate backup for course: ACCTG 180 Online Master
+2024-10-16 13:51:52,637 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 201 Online Master: Failed to initiate backup for course: ACCTG 201 Online Master
+2024-10-16 13:51:52,637 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 201 Online Master: Failed to initiate backup for course: ACCTG 201 Online Master
+2024-10-16 13:51:52,637 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 201 Online Master: Failed to initiate backup for course: ACCTG 201 Online Master
+2024-10-16 13:51:53,709 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 202 Online Master: Failed to initiate backup for course: ACCTG 202 Online Master
+2024-10-16 13:51:53,709 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 202 Online Master: Failed to initiate backup for course: ACCTG 202 Online Master
+2024-10-16 13:51:53,709 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 202 Online Master: Failed to initiate backup for course: ACCTG 202 Online Master
+2024-10-16 13:51:54,177 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 205 Online Master: Failed to initiate backup for course: ACCTG 205 Online Master
+2024-10-16 13:51:54,177 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 205 Online Master: Failed to initiate backup for course: ACCTG 205 Online Master
+2024-10-16 13:51:54,177 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 205 Online Master: Failed to initiate backup for course: ACCTG 205 Online Master
+2024-10-16 13:51:54,617 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 233 Online Master: Failed to initiate backup for course: ACCTG 233 Online Master
+2024-10-16 13:51:54,617 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 233 Online Master: Failed to initiate backup for course: ACCTG 233 Online Master
+2024-10-16 13:51:54,617 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 233 Online Master: Failed to initiate backup for course: ACCTG 233 Online Master
+2024-10-16 13:51:55,044 - ErrorHandler - ERROR - API Error during triggering backup for AGBUS 180A Online Master: Failed to initiate backup for course: AGBUS 180A Online Master
+2024-10-16 13:51:55,044 - ErrorHandler - ERROR - API Error during triggering backup for AGBUS 180A Online Master: Failed to initiate backup for course: AGBUS 180A Online Master
+2024-10-16 13:51:55,044 - ErrorHandler - ERROR - API Error during triggering backup for AGBUS 180A Online Master: Failed to initiate backup for course: AGBUS 180A Online Master
+2024-10-16 13:51:55,457 - ErrorHandler - ERROR - API Error during triggering backup for AGBUS 180B Online Master: Failed to initiate backup for course: AGBUS 180B Online Master
+2024-10-16 13:51:55,457 - ErrorHandler - ERROR - API Error during triggering backup for AGBUS 180B Online Master: Failed to initiate backup for course: AGBUS 180B Online Master
+2024-10-16 13:51:55,457 - ErrorHandler - ERROR - API Error during triggering backup for AGBUS 180B Online Master: Failed to initiate backup for course: AGBUS 180B Online Master
+2024-10-16 13:51:55,904 - ErrorHandler - ERROR - API Error during triggering backup for ANTH 101 Online Master: Failed to initiate backup for course: ANTH 101 Online Master
+2024-10-16 13:51:55,904 - ErrorHandler - ERROR - API Error during triggering backup for ANTH 101 Online Master: Failed to initiate backup for course: ANTH 101 Online Master
+2024-10-16 13:51:55,904 - ErrorHandler - ERROR - API Error during triggering backup for ANTH 101 Online Master: Failed to initiate backup for course: ANTH 101 Online Master
+2024-10-16 13:51:56,362 - ErrorHandler - ERROR - API Error during triggering backup for APD 221 Online Master: Failed to initiate backup for course: APD 221 Online Master
+2024-10-16 13:51:56,362 - ErrorHandler - ERROR - API Error during triggering backup for APD 221 Online Master: Failed to initiate backup for course: APD 221 Online Master
+2024-10-16 13:51:56,362 - ErrorHandler - ERROR - API Error during triggering backup for APD 221 Online Master: Failed to initiate backup for course: APD 221 Online Master
+2024-10-16 13:52:23,372 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 180 Online Master: Failed to initiate backup for course: ACCTG 180 Online Master
+2024-10-16 13:52:23,372 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 180 Online Master: Failed to initiate backup for course: ACCTG 180 Online Master
+2024-10-16 13:52:23,372 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 180 Online Master: Failed to initiate backup for course: ACCTG 180 Online Master
+2024-10-16 13:52:24,772 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 201 Online Master: Failed to initiate backup for course: ACCTG 201 Online Master
+2024-10-16 13:52:24,772 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 201 Online Master: Failed to initiate backup for course: ACCTG 201 Online Master
+2024-10-16 13:52:24,772 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 201 Online Master: Failed to initiate backup for course: ACCTG 201 Online Master
+2024-10-16 13:52:25,407 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 202 Online Master: Failed to initiate backup for course: ACCTG 202 Online Master
+2024-10-16 13:52:25,407 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 202 Online Master: Failed to initiate backup for course: ACCTG 202 Online Master
+2024-10-16 13:52:25,407 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 202 Online Master: Failed to initiate backup for course: ACCTG 202 Online Master
+2024-10-16 13:52:25,940 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 205 Online Master: Failed to initiate backup for course: ACCTG 205 Online Master
+2024-10-16 13:52:25,940 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 205 Online Master: Failed to initiate backup for course: ACCTG 205 Online Master
+2024-10-16 13:52:25,940 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 205 Online Master: Failed to initiate backup for course: ACCTG 205 Online Master
+2024-10-16 13:52:26,423 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 233 Online Master: Failed to initiate backup for course: ACCTG 233 Online Master
+2024-10-16 13:52:26,423 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 233 Online Master: Failed to initiate backup for course: ACCTG 233 Online Master
+2024-10-16 13:52:26,423 - ErrorHandler - ERROR - API Error during triggering backup for ACCTG 233 Online Master: Failed to initiate backup for course: ACCTG 233 Online Master
+2024-10-16 13:52:26,942 - ErrorHandler - ERROR - API Error during triggering backup for AGBUS 180A Online Master: Failed to initiate backup for course: AGBUS 180A Online Master
+2024-10-16 13:52:26,942 - ErrorHandler - ERROR - API Error during triggering backup for AGBUS 180A Online Master: Failed to initiate backup for course: AGBUS 180A Online Master
+2024-10-16 13:52:26,942 - ErrorHandler - ERROR - API Error during triggering backup for AGBUS 180A Online Master: Failed to initiate backup for course: AGBUS 180A Online Master
+2024-10-16 13:52:27,455 - ErrorHandler - ERROR - API Error during triggering backup for AGBUS 180B Online Master: Failed to initiate backup for course: AGBUS 180B Online Master
+2024-10-16 13:52:27,455 - ErrorHandler - ERROR - API Error during triggering backup for AGBUS 180B Online Master: Failed to initiate backup for course: AGBUS 180B Online Master
+2024-10-16 13:52:27,455 - ErrorHandler - ERROR - API Error during triggering backup for AGBUS 180B Online Master: Failed to initiate backup for course: AGBUS 180B Online Master
+2024-10-16 13:52:27,979 - ErrorHandler - ERROR - API Error during triggering backup for ANTH 101 Online Master: Failed to initiate backup for course: ANTH 101 Online Master
+2024-10-16 13:52:27,979 - ErrorHandler - ERROR - API Error during triggering backup for ANTH 101 Online Master: Failed to initiate backup for course: ANTH 101 Online Master
+2024-10-16 13:52:27,979 - ErrorHandler - ERROR - API Error during triggering backup for ANTH 101 Online Master: Failed to initiate backup for course: ANTH 101 Online Master
+2024-10-16 13:52:28,472 - ErrorHandler - ERROR - API Error during triggering backup for APD 221 Online Master: Failed to initiate backup for course: APD 221 Online Master
+2024-10-16 13:52:28,472 - ErrorHandler - ERROR - API Error during triggering backup for APD 221 Online Master: Failed to initiate backup for course: APD 221 Online Master
+2024-10-16 13:52:28,472 - ErrorHandler - ERROR - API Error during triggering backup for APD 221 Online Master: Failed to initiate backup for course: APD 221 Online Master

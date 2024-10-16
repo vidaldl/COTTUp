@@ -3,3 +3,28 @@
 2024-10-15 18:29:19,472 - CanvasBackupManager - WARNING - This is a warning message.
 2024-10-15 18:29:19,472 - CanvasBackupManager - ERROR - This is an error message.
 2024-10-15 18:29:19,472 - CanvasBackupManager - CRITICAL - This is a critical message.
+2024-10-16 13:50:05,777 - CanvasBackupManager - INFO - Loading courses from CSV: tests/csv/test_courses.csv
+2024-10-16 13:51:10,694 - CanvasBackupManager - INFO - Loading courses from CSV: C:\Users\vidaldl\Desktop\COTTup\src\../tests/csv/testcsv.csv
+2024-10-16 13:51:10,696 - CanvasBackupManager - INFO - Successfully loaded 10 courses from CSV.
+2024-10-16 13:51:43,565 - CanvasBackupManager - INFO - Loading courses from CSV: C:\Users\vidaldl\Desktop\COTTup\src\../tests/csv/testcsv.csv
+2024-10-16 13:51:43,565 - CanvasBackupManager - INFO - Successfully loaded 10 courses from CSV.
+2024-10-16 13:51:48,141 - CanvasBackupManager - INFO - Triggering backup for course: ACCTG 180 Online Master (ID: https://byui.instructure.com/courses/11296)
+2024-10-16 13:51:52,637 - CanvasBackupManager - INFO - Triggering backup for course: ACCTG 201 Online Master (ID: https://byui.instructure.com/courses/132590)
+2024-10-16 13:51:53,709 - CanvasBackupManager - INFO - Triggering backup for course: ACCTG 202 Online Master (ID: https://byui.instructure.com/courses/17458)
+2024-10-16 13:51:54,177 - CanvasBackupManager - INFO - Triggering backup for course: ACCTG 205 Online Master (ID: https://byui.instructure.com/courses/202094)
+2024-10-16 13:51:54,617 - CanvasBackupManager - INFO - Triggering backup for course: ACCTG 233 Online Master (ID: https://byui.instructure.com/courses/216750)
+2024-10-16 13:51:55,043 - CanvasBackupManager - INFO - Triggering backup for course: AGBUS 180A Online Master (ID: https://byui.instructure.com/courses/16527)
+2024-10-16 13:51:55,456 - CanvasBackupManager - INFO - Triggering backup for course: AGBUS 180B Online Master (ID: https://byui.instructure.com/courses/36906)
+2024-10-16 13:51:55,903 - CanvasBackupManager - INFO - Triggering backup for course: ANTH 101 Online Master (ID: https://byui.instructure.com/courses/2768)
+2024-10-16 13:51:56,360 - CanvasBackupManager - INFO - Triggering backup for course: APD 221 Online Master (ID: https://byui.instructure.com/courses/202580)
+2024-10-16 13:52:14,221 - CanvasBackupManager - INFO - Loading courses from CSV: C:\Users\vidaldl\Desktop\COTTup\src\../tests/csv/testcsv.csv
+2024-10-16 13:52:14,221 - CanvasBackupManager - INFO - Successfully loaded 10 courses from CSV.
+2024-10-16 13:52:23,371 - CanvasBackupManager - INFO - Triggering backup for course: ACCTG 180 Online Master (ID: https://byui.instructure.com/courses/11296)
+2024-10-16 13:52:24,771 - CanvasBackupManager - INFO - Triggering backup for course: ACCTG 201 Online Master (ID: https://byui.instructure.com/courses/132590)
+2024-10-16 13:52:25,406 - CanvasBackupManager - INFO - Triggering backup for course: ACCTG 202 Online Master (ID: https://byui.instructure.com/courses/17458)
+2024-10-16 13:52:25,940 - CanvasBackupManager - INFO - Triggering backup for course: ACCTG 205 Online Master (ID: https://byui.instructure.com/courses/202094)
+2024-10-16 13:52:26,422 - CanvasBackupManager - INFO - Triggering backup for course: ACCTG 233 Online Master (ID: https://byui.instructure.com/courses/216750)
+2024-10-16 13:52:26,940 - CanvasBackupManager - INFO - Triggering backup for course: AGBUS 180A Online Master (ID: https://byui.instructure.com/courses/16527)
+2024-10-16 13:52:27,454 - CanvasBackupManager - INFO - Triggering backup for course: AGBUS 180B Online Master (ID: https://byui.instructure.com/courses/36906)
+2024-10-16 13:52:27,977 - CanvasBackupManager - INFO - Triggering backup for course: ANTH 101 Online Master (ID: https://byui.instructure.com/courses/2768)
+2024-10-16 13:52:28,471 - CanvasBackupManager - INFO - Triggering backup for course: APD 221 Online Master (ID: https://byui.instructure.com/courses/202580)

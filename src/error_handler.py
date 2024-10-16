@@ -12,18 +12,17 @@ class ErrorHandler:
         self.logger.addHandler(handler)
 
     def handle_api_error(self, error, action, retry_callback=None):
-        """Handle API-related errors."""
+        """Handle API-related errors and show a pop-up in the GUI."""
         self.logger.error(f"API Error during {action}: {error}")
         messagebox.showerror("API Error", f"An error occurred while {action}.\nError: {error}")
 
-        # If a retry callback is provided, offer a retry option
         if retry_callback:
             retry = messagebox.askretrycancel("Retry?", "Would you like to retry the operation?")
             if retry:
                 retry_callback()
 
     def handle_file_error(self, error, action):
-        """Handle file-related errors."""
+        """Handle file-related errors and show a pop-up in the GUI."""
         self.logger.error(f"File Error during {action}: {error}")
         messagebox.showerror("File Error", f"An error occurred while {action}.\nError: {error}")
 
