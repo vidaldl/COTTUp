@@ -3,6 +3,7 @@ import time
 from src.token_manager import TokenManager
 from src.file_manager import FileManager
 from src.error_handler import ErrorHandler, APIError
+from src.logger import Logger
 
 class BackupManager:
     def __init__(self):
@@ -10,10 +11,12 @@ class BackupManager:
         self.token_manager = TokenManager()
         self.file_manager = FileManager()
         self.error_handler = ErrorHandler()
+        self.logger = Logger().get_logger()
         self.api_token = self.token_manager.get_token()
 
     def trigger_backup(self, course_id):
         """Trigger a backup for a given course ID."""
+        self.logger.info(f"Triggering backup for course {course_id}")
         endpoint = f"{self.api_base_url}/courses/{course_id}/backups"
         headers = {
             "Authorization": f"Bearer {self.api_token}"
