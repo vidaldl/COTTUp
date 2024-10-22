@@ -1,3 +1,6 @@
+#src/token_manager.py
+# src/token_manager.py
+
 import keyring
 from src.error_handler import ErrorHandler, ConfigError
 from tkinter import simpledialog, Tk
@@ -11,7 +14,8 @@ class TokenManager:
     def get_token(self):
         """Retrieve the API token from the keyring."""
         try:
-            self.api_token = keyring.get_password(self.service_name, "api_token")
+            if not self.api_token:
+                self.api_token = keyring.get_password(self.service_name, "api_token")
             if not self.api_token:
                 self.api_token = self.prompt_for_token()
             return self.api_token
@@ -43,16 +47,20 @@ class TokenManager:
         except Exception as e:
             self.error_handler.handle_generic_error(e, "storing API token")
 
-    def refresh_token(self):
-        """Refresh or update the API token if it is missing or invalid."""
+    def delete_token(self):
+        """Delete the stored API token."""
         try:
-            token = self.prompt_for_token()
-            if token:
-                self.api_token = token
-                return token
+            keyring.delete_password(self.service_name, "api_token")
+            self.api_token = None
+            print("API token deleted successfully.")
         except Exception as e:
-            self.error_handler.handle_generic_error(e, "refreshing API token")
-            return None
+            self.error_handler.handle_generic_error(e, "deleting API token")
+
+    def refresh_token(self):
+        """Refresh or update the API token by prompting the user."""
+        self.delete_token()
+        return self.get_token()
+
 if __name__ == "__main__":
     token_manager = TokenManager()
     token = token_manager.get_token()

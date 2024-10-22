@@ -1,3 +1,4 @@
+#src/scheduler.py
 import schedule
 import time
 import threading
@@ -12,6 +13,7 @@ class Scheduler:
     def schedule_backup(self, interval_type, interval_value):
         """Schedule the backup task based on the interval type and value."""
         try:
+            schedule.clear()
             if interval_type == "seconds":
                 schedule.every(interval_value).seconds.do(self.backup_callback)
             elif interval_type == "minutes":

@@ -1,3 +1,4 @@
+#src/error_handler.py
 import logging
 from tkinter import messagebox
 

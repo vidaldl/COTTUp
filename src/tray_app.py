@@ -1,3 +1,4 @@
+#src/tray_app.py
 from pystray import Icon, MenuItem, Menu
 from PIL import Image, ImageDraw
 import threading

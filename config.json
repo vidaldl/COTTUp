@@ -1,7 +1,7 @@
 {
     "backup_interval": {
         "type": "minutes",
-        "value": 60
+        "value": 5
     },
     "backup_folder": "data\\backups",
     "api_token": null
