@@ -89,8 +89,8 @@ class BackupManager:
         
     def poll_export_status(self, course_id, export_id, course_name):
         """Poll the export status until it's completed or failed."""
-        max_attempts = 20
-        delay = 30  # seconds
+        max_attempts = 2000
+        delay = 5  # seconds
         attempts = 0
 
         while attempts < max_attempts:

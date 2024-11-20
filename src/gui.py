@@ -1,12 +1,15 @@
-#src/gui.py
+# src/gui.py
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 from src.scheduler import Scheduler
 from src.backup_manager import BackupManager
 from src.persistence_manager import PersistenceManager
+from src.token_manager import TokenManager
 import threading
 import queue
-#
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
+
 class GUI:
     def __init__(self):
         self.root = tk.Tk()
@@ -22,8 +25,34 @@ class GUI:
         self.process_queue()
         self.backup_manager = BackupManager(update_queue=self.update_queue)
         self.error_handler = self.backup_manager.error_handler
+        self.token_manager = TokenManager()
 
+    def run_backup_now(self):
+        """Run backups immediately for all loaded courses."""
+        if not self.backup_manager.courses:
+            messagebox.showwarning("No Courses", "No courses loaded to backup.")
+            return
 
+        # Limit concurrency to 5 threads (adjust based on your requirements and API rate limits)
+        max_workers = 5
+        delay_between_batches = 1  # Introduce a delay between batches to respect rate limits
+
+        # Create ThreadPoolExecutor for managing concurrent backups
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = []
+            for index, (course_name, course_id) in enumerate(self.backup_manager.courses):
+                futures.append(executor.submit(self.backup_manager.trigger_backup, course_name, course_id))
+                # Introduce a delay after every 'max_workers' submissions to prevent API overload
+                if (index + 1) % max_workers == 0:
+                    time.sleep(delay_between_batches)
+
+            # Process results as they are completed
+            for future in as_completed(futures):
+                try:
+                    result = future.result()  # This will raise an exception if one occurred during the backup
+                    # Handle successful backup logic if needed (e.g., logging)
+                except Exception as e:
+                    self.error_handler.handle_generic_error(e, "running backups")
 
     def process_queue(self):
         try:
@@ -35,49 +64,7 @@ class GUI:
         except queue.Empty:
             pass
         # Schedule the next queue check
-        self.root.after(100, self.process_queue)
-    def run_backup_now(self):
-        """Run backups immediately for all loaded courses."""
-        if not self.backup_manager.courses:
-            messagebox.showwarning("No Courses", "No courses loaded to backup.")
-            return
-
-        for course_name, course_id in self.backup_manager.courses:
-            thread = threading.Thread(
-                target=self.backup_manager.trigger_backup, 
-                args=(course_name, course_id)
-            )
-            thread.start()
-
-
-    def load_saved_statuses(self):
-        """Load and display the saved statuses in the GUI."""
-        print("Loading saved statuses into the GUI.")
-        saved_statuses = self.persistence_manager.get_all_statuses()
-        for course_name, course_id in self.backup_manager.courses:
-            print(f"Adding course to GUI: {course_name}, ID: {course_id}")
-            status_info = saved_statuses.get(course_id, {"status": "Not Started", "progress": 0})
-            self.update_gui_with_status(course_name, status_info["status"], status_info["progress"])
-
-    def setup_course_list(self):
-        """Set up the list to display courses and their status."""
-        self.course_list = ttk.Treeview(
-            self.root, 
-            columns=("Course Name", "Status", "Progress"), 
-            show="headings", 
-            height=10
-        )
-        self.course_list.heading("Course Name", text="Course Name")
-        self.course_list.heading("Status", text="Status")
-        self.course_list.heading("Progress", text="Progress")
-
-        # Set column widths
-        self.course_list.column("Course Name", width=200)
-        self.course_list.column("Status", width=100)
-        self.course_list.column("Progress", width=100)
-
-        # Place the Treeview in the grid
-        self.course_list.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
+        self.root.after(500, self.process_queue)  # Increased polling interval to reduce CPU usage
 
     def update_gui_with_status(self, course_name, status, progress):
         """Update the GUI with the course status and progress."""
@@ -90,42 +77,6 @@ class GUI:
                 return
         # Insert new item if not found
         self.status_table.insert("", "end", values=(course_name, status, f"{progress}%"))
-        
-    def setup_schedule_options(self):
-        """Set up scheduling options in the GUI."""
-        schedule_frame = ttk.LabelFrame(self.root, text="Schedule Backups")
-        schedule_frame.grid(row=0, column=0, padx=10, pady=10, sticky="ew")
-
-        self.interval_var = ttk.Combobox(schedule_frame, values=["Test - 5 Seconds", "30 minutes", "1 hour", "Daily"])
-        self.interval_var.set("Select Interval")
-        self.interval_var.grid(row=0, column=0, padx=5, pady=5)
-
-        set_schedule_button = ttk.Button(schedule_frame, text="Set Schedule", command=self.set_schedule)
-        set_schedule_button.grid(row=0, column=1, padx=5, pady=5)
-        
-
-    def set_schedule(self):
-        """Set the schedule based on user selection."""
-        interval = self.interval_var.get()
-        if interval == "30 minutes":
-            self.scheduler.schedule_backup("minutes", 30)
-        elif interval == "1 hour":
-            self.scheduler.schedule_backup("hours", 1)
-        elif interval == "Daily":
-            self.scheduler.schedule_backup("days", 1)
-        elif interval == "Test - 5 Seconds":
-            self.scheduler.schedule_backup("seconds", 1)
-        else:
-            print(f"Unknown interval: {interval}")
-
-
-        print(f"Backup scheduled: {interval}")
-
-    def run_scheduled_backup(self):
-        """Callback for running scheduled backups."""
-        for course_name, course_id in self.backup_manager.courses:
-            thread = threading.Thread(target=self.backup_manager.trigger_backup, args=(course_name, course_id))
-            thread.start()
 
     def setup_menu(self):
         """Set up the menu bar for the application."""
@@ -139,21 +90,6 @@ class GUI:
         file_menu.add_command(label="Exit", command=self.exit_app)
         menu_bar.add_cascade(label="File", menu=file_menu)
         self.root.config(menu=menu_bar)
-
-    def refresh_api_token(self):
-        """Refresh the API token by prompting the user to enter a new one."""
-        try:
-            # Delete the existing token
-            self.backup_manager.token_manager.delete_token()
-            # Prompt for a new token
-            new_token = self.backup_manager.token_manager.get_token()
-            if new_token:
-                messagebox.showinfo("API Token Updated", "API token refreshed successfully.")
-                self.backup_manager.api_token = new_token  # Update the token in BackupManager
-            else:
-                messagebox.showwarning("API Token Not Updated", "API token was not updated.")
-        except Exception as e:
-            self.error_handler.handle_generic_error(e, "refreshing API token")
 
     def setup_layout(self):
         """Set up the main layout of the application."""
@@ -219,13 +155,33 @@ class GUI:
             # Store the backup folder path
             self.backup_manager.file_manager.backup_folder = folder_path
 
-    def exit_app(self):
-        """Exit the application."""
-        self.root.quit()
+    def refresh_api_token(self):
+        """Refresh the API token by prompting the user to enter a new one."""
+        try:
+            # Prompt for a new token first
+            new_token = self.token_manager.get_token()
+            if new_token:
+                # Delete the existing token only after successfully obtaining a new one
+                self.token_manager.delete_token()
+                messagebox.showinfo("API Token Updated", "API token refreshed successfully.")
+                self.backup_manager.api_token = new_token  # Update the token in BackupManager
+            else:
+                messagebox.showwarning("API Token Not Updated", "API token was not updated.")
+        except Exception as e:
+            self.error_handler.handle_generic_error(e, "refreshing API token")
 
-    def run(self):
-        """Run the GUI application."""
-        self.root.mainloop()
+    def load_saved_statuses(self):
+        """Load and display the saved statuses in the GUI."""
+        saved_statuses = self.persistence_manager.get_all_statuses()
+        for course_name, course_id in self.backup_manager.courses:
+            status_info = saved_statuses.get(course_id, {"status": "Not Started", "progress": 0})
+            self.update_gui_with_status(course_name, status_info["status"], status_info["progress"])
+
+    def run_scheduled_backup(self):
+        """Callback for running scheduled backups."""
+        for course_name, course_id in self.backup_manager.courses:
+            thread = threading.Thread(target=self.backup_manager.trigger_backup, args=(course_name, course_id))
+            thread.start()
 
 if __name__ == "__main__":
     app = GUI()
